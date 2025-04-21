@@ -1,0 +1,23 @@
+38.“salt value makes life more difficult for the bad guys by hashing each password.” – Discuss the given statement with an appropriate example.(ANs from chat gpt)
+
+Ans. In the context of password security, a "salt" is a random value that is generated for each user's password before it is hashed. This salt is then combined with the user's password before hashing, creating a unique hash for each user. The purpose of using a salt is to prevent attackers from using precomputed tables (like rainbow tables) to quickly look up the hash values of common passwords.
+
+Here's an example to illustrate the concept:
+
+Suppose you have a website where users create accounts with passwords. Without using a salt, the passwords are directly hashed, which might look like this:
+
+1. User Alice signs up with the password "password123."
+2. Her password is hashed and stored as: "a1e62bc582dbd60b1c3f5e7876542683a"
+
+Now, if an attacker gains access to the database containing these hashes and has a precomputed table of hashes for common passwords, they can quickly look up "a1e62bc582dbd60b1c3f5e7876542683a" and identify that it corresponds to "password123."
+
+However, if you use a salt, the process is different:
+
+1. User Bob signs up with the same password "password123."
+2. A unique random salt is generated for Bob, let's say "7d9f8a7b."
+3. Bob's password and the salt are combined, resulting in "password1237d9f8a7b."
+4. The combined value is hashed and stored as: "ad65458a75c890d20e1f7d33c4cc4e844"
+
+Now, even though Bob and Alice have the same password, their hashed values are entirely different due to the unique salts. An attacker cannot easily use a precomputed table to crack the password because they would need to compute the hash for each possible password with Bob's salt. This significantly increases the time and effort required to crack passwords, making it much more difficult for attackers.
+
+In summary, using a salt value when hashing passwords adds a layer of complexity and security to password storage. It ensures that even if two users have the same password, their hashed values will be different due to the unique salts, making it more challenging for attackers to crack passwords through common attack methods.
